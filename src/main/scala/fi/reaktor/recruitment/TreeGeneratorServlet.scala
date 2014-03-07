@@ -11,6 +11,8 @@ class TreeGeneratorServlet extends ScalatraServlet with ScalateSupport {
     val rows = 100
     val max = 100    
     val treeStr = new Range(1, rows + 1, 1).map(to => new Range(0, to, 1).map(_ => rnd.nextInt(max)).mkString(" ")).mkString("\n")
+    
+    response.setHeader("Content-Disposition", "attachment; filename=tree.txt")
 
     "# seed: " + seed + "\n" + treeStr
   }
